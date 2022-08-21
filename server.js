@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const getBooks = require('./modules/handlers');
 
 mongoose.connect(process.env.MONGO_CONNECTION);
 
@@ -24,5 +25,7 @@ app.get('/test', (request, response) => {
   response.send('test request received');
 
 });
+
+app.get('/books', getBooks);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
