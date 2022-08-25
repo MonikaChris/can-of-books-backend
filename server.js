@@ -29,5 +29,6 @@ app.get('/test', (request, response) => {
 
 app.get('/books', Handler.getBooks);
 app.post('/books', Handler.createBooks);
+app.delete('/book/:id', Handler.deleteBook);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
