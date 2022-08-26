@@ -28,7 +28,7 @@ Handler.createBooks = async (request, response, next) => {
     console.log('failed');
     e.customMessage = 'Book creation failed';
     console.error(e.customMessage + e);
-    response.status(500).send(e)
+    //response.status(500).send(e)
     next(e);
   }
 }
