@@ -31,4 +31,8 @@ app.get('/books', Handler.getBooks);
 app.post('/books', Handler.createBooks);
 app.delete('/book/:id', Handler.deleteBook);
 
+app.use((error, request, response, next) => {
+  response.status(500).send(error);
+});
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
