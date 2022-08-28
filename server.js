@@ -28,8 +28,9 @@ app.get('/test', (request, response) => {
 });
 
 app.get('/books', Handler.getBooks);
-app.post('/books', Handler.createBooks);
+app.post('/books', Handler.createBook);
 app.delete('/book/:id', Handler.deleteBook);
+app.put('/books/:id', Handler.updateBook);
 
 app.use((error, request, response, next) => {
   response.status(500).send(error);
