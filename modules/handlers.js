@@ -15,8 +15,8 @@ Handler.getBooks = async (request, response, next) => {
   }
 }
 
-Handler.createBooks = async (request, response, next) => {
-  console.log('createBooks', request.body )
+Handler.createBook = async (request, response, next) => {
+  console.log('createBooks', request.body );
   try {
     const book = await Book.create(request.body);
     response.status(201).send(book);
@@ -43,5 +43,16 @@ Handler.deleteBook = async (request, response, next) => {
     next(e);
   }
 }
+
+Handler.updateBook = async (request, response, next) => {
+  try {
+    const updatedBook = await Book.findByIdAndUpdate(request.params.id, request.body, {overwrite:true, new: true});
+    response.status(200).send(updatedBook);
+  } catch(e) {
+    next(e);
+  }
+}
+
+
 
 module.exports = Handler;
