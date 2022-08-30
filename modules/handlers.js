@@ -46,7 +46,7 @@ Handler.deleteBook = async (request, response, next) => {
 
 Handler.updateBook = async (request, response, next) => {
   try {
-    const updatedBook = await Book.findByIdAndUpdate(request.params.id, request.body, {overwrite:true, new: true});
+    const updatedBook = await Book.findByIdAndUpdate(request.params.id, request.body, { new: true });
     response.status(200).send(updatedBook);
   } catch(e) {
     next(e);
