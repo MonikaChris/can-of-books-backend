@@ -17,19 +17,22 @@ async function seed() {
   const book1 = {
     title: 'Les Miserables',
     description: 'Beginning in 1815 and culminating in the 1832 June Rebellion in Paris, the novel follows the lives and interactions of several characters, particularly the struggles of ex-convict Jean Valjean and his experience of redemption.',
-    status: 'A book I read'
+    status: 'A book I read',
+    email: 'monidavies@gmail.com'
   };
 
   const book2 = {
     title: 'Dune',
     description: 'Paul Atreides and his family take over the planet Arrakis, aka the desert planet.',
-    status: 'A fantastic book'
+    status: 'A fantastic book',
+    email: 'monidavies@gmail.com'
   };
 
   const book3 = {
     title: 'The Tell-Tale Heart',
     description: 'Follows an unreliable narrator\'s descent into madness after he commits a murder',
-    status: 'Hexx likes this story'
+    status: 'Hexx likes this story',
+    email: 'rpruazol@gmail.com'
   };
 
   Book.insertMany([book1, book2, book3])

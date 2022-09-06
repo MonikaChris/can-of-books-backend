@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Handler = require('./modules/handlers');
+const verifyUser = require('./auth.js');
 
 mongoose.connect(process.env.MONGO_CONNECTION);
 
@@ -27,10 +28,16 @@ app.get('/test', (request, response) => {
 
 });
 
+// This will run the "verify" code on every route automatically
+// If the user is valid, we'll have them in request.user in every route!
+// If not, it'll throw an error for us
+app.use(verifyUser);
+
 app.get('/books', Handler.getBooks);
 app.post('/books', Handler.createBook);
 app.delete('/book/:id', Handler.deleteBook);
 app.put('/books/:id', Handler.updateBook);
+app.get('/user', Handler.handleGetUser); // lab 15
 
 app.use((error, request, response, next) => {
   response.status(500).send(error);
