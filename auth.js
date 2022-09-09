@@ -11,9 +11,9 @@ const jwksClient = require('jwks-rsa'); // auth
 // When a user is validated, request.user will contain their information
 // Otherwise, this will force an error
 function verifyUser(request, response, next) {
-
   function valid(err, user) {
     request.user = user;
+    console.log('request.user', request.user);
     next();
   }
 
@@ -21,7 +21,7 @@ function verifyUser(request, response, next) {
     const token = request.headers.authorization.split(' ')[1];
     // this console allows me to grab the token so I can use it to test it in ThunderClient
     // make a request from the client-side, get my token back, then test it in ThunderClient
-    console.log("Token: ", token);
+    // console.log("Token: ", token);
     // we get .verify from jwt - it verifies the user
     jwt.verify(token, getKey, {}, valid);
   } catch (error) {
@@ -41,8 +41,13 @@ const client = jwksClient({
 
 // Match the JWT's key to your Auth0 Account Key so we can validate it
 function getKey(header, callback) {
+  console.log(header)
   client.getSigningKey(header.kid, function (err, key) {
+    console.log('err', err);
+    console.log('key', key);
+
     const signingKey = key.publicKey || key.rsaPublicKey;
+    
     callback(null, signingKey);
   });
 }

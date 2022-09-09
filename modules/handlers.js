@@ -7,7 +7,7 @@ const Handler = {};
 
 Handler.getBooks = async (request, response, next) => {
   try {
-    console.log('Request Body user: ', request.body.user);
+    // console.log('Request: ', request.user);
     const books = await Book.find({email: request.user.email});
     response.status(200).send(books);
   } catch (error) {
@@ -17,7 +17,7 @@ Handler.getBooks = async (request, response, next) => {
 };
 
 Handler.createBook = async (request, response, next) => {
-  console.log('createBooks', request.body );
+  // console.log('createBooks', request.body );
   try {
     const book = await Book.create({ ...request.body, email: request.user.email });
     response.status(201).send(book);
